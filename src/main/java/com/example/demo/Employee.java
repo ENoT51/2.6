@@ -6,6 +6,8 @@ import java.util.Objects;
 public class Employee {
     private String firstName;
     private String lastName;
+    private double salary;
+    private int department;
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
@@ -21,6 +23,22 @@ public class Employee {
     }
     public String getFullName(){
         return firstName + " " + lastName;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
     }
 
     @Override
