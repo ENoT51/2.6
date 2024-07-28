@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.Employee;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +31,11 @@ private final DepartmentService departmentService;
     }
     @GetMapping("/all")
     public Map<Integer,List<Employee>> getAll(){
-        return departmentService.getGroupedDep();
+        return departmentService.getAll();
+    }
+    @GetMapping("/sum")
+    public double getSum(int departmentId){
+        return departmentService.getEmployeeSalarySum(departmentId);
     }
 
 }

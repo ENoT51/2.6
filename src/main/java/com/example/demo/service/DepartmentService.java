@@ -15,6 +15,10 @@ public class DepartmentService {
     public DepartmentService(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
+    public double getEmployeeSalarySum(int department){
+        return employeeService.findAll().stream().filter(e -> e.getDepartment()== department)
+                .mapToDouble(Employee::getSalary).sum();
+    }
     public Employee getMaxSalary(int department){
         return employeeService.findAll().stream()
                 .filter(e -> e.getDepartment() == department)
@@ -32,7 +36,7 @@ public class DepartmentService {
                 .filter(e -> e.getDepartment()==department)
                 .toList();
     }
-    public Map<Integer,List<Employee>> getGroupedDep(){
+    public Map<Integer,List<Employee>> getAll(){
         return employeeService.findAll().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
     }
