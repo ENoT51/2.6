@@ -17,8 +17,8 @@ public class EmployeeServiceTest {
     EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
 @BeforeEach
 void init(){
-    employeeService.add("acv", "asc");
-    employeeService.add("abca", "ascva");
+    employeeService.add("ivan", "ivanov", 1000,1);
+    employeeService.add("marina", "ivanova", 10000,2);
 }
 @AfterEach
 void clear(){
@@ -31,19 +31,20 @@ void clear(){
     }
     @Test
     void find(){
-    Employee actual =  employeeService.find("ivan", "ivanov");
+    Employee actual =  employeeService.find("ivan", "ivanov", 1000,1);
     assertEquals("ivan", actual.getFirstName());
+    assertEquals("ivanov", actual.getLastName());
 
     }
     @Test
     void find_negative(){
     assertThrows(EmployeeNotFoundException.class, () ->
-        employeeService.find("sergei", "sergeev"));
+        employeeService.find("ivan", "ivanov",1,100));
     }
     @Test
     void remove(){
         int size = employeeService.findAll().size();
-        employeeService.remove("ivan","ivanov");
-        assertEquals(size - 1, employeeService.findAll().size());
+        employeeService.remove("marina","ivanova",1,100);
+        assertEquals(size - 2, employeeService.findAll().size());
     }
 }
